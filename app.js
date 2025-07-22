@@ -95,7 +95,14 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(8080, () => {
-    console.log('Server is running on port 8080');
+app.get('/', (req, res) => {
+  res.send('Wanderlust Home Page is Working!');
 });
+
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 
