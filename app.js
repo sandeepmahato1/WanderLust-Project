@@ -86,8 +86,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-  res.send('Wanderlust Home Page is Working!');
+const Listing = require('./models/listing');
+
+app.get('/', async (req, res) => {
+  const listings = await Listing.find({});
+  res.render('listings/index', { listings });
 });
 
 app.use("/listings", listingRouter);
@@ -98,8 +101,6 @@ app.use((err, req, res, next) => {
     let {statusCode = 500, message = "Something went wrong"} = err;
     res.status(statusCode).render("error.ejs", { message });
 });
-
-
 
 const port = process.env.PORT || 8080;
 
