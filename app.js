@@ -89,8 +89,8 @@ app.use((req, res, next) => {
 const Listing = require('./models/listing');
 
 app.get('/', async (req, res) => {
-  const listings = await Listing.find({});
-  res.render('listings/index', { listings });
+  const alllistings = await Listing.find({});
+  res.render('listings/index', { alllistings });
 });
 
 app.use("/listings", listingRouter);
