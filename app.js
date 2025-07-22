@@ -20,6 +20,8 @@ const reviewRouter = require("./routes/review.js");
 const listingRouter = require("./routes/listing.js");
 const userRouter = require("./routes/user.js");
 
+const Listing = require('./models/listing');
+
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 const dburl = process.env.ATLASDB_URL;
@@ -86,11 +88,10 @@ app.use((req, res, next) => {
     next();
 });
 
-const Listing = require('./models/listing');
 
 app.get('/', async (req, res) => {
-  const alllistings = await Listing.find({});
-  res.render('listings/index', { alllistings });
+  const allListings = await Listing.find({});
+  res.render('listings/index', { allListings });
 });
 
 app.use("/listings", listingRouter);
