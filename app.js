@@ -86,6 +86,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+  res.send('Wanderlust Home Page is Working!');
+});
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
@@ -95,9 +99,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error.ejs", { message });
 });
 
-app.get('/', (req, res) => {
-  res.send('Wanderlust Home Page is Working!');
-});
+
 
 const port = process.env.PORT || 8080;
 
